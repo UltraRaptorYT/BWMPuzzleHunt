@@ -1,13 +1,40 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import supabase from "@/lib/supabase";
 import { Button } from "@/components/ui/button";
 
+type ImageType = {
+  id: number;
+  username: string;
+  image: string;
+  approved: boolean;
+  created_at: string;
+};
+
 function Home() {
   // const [leaderboard, setLeaderboard] = useState([]);
+  const [selfies, setSelfies] = useState<ImageType[]>([]);
 
   useEffect(() => {
-    supabase.from("");
+    supabase.from("bwm_user");
+  }, []);
+
+  useEffect(() => {
+    async function getPhotos() {
+      const { data, error } = await supabase
+        .from("bwm_image")
+        .select()
+        .eq("approved", "true");
+      if (error) {
+        console.log(error);
+        return error;
+      }
+      if (data) {
+        setSelfies(data);
+      }
+    }
+
+    getPhotos();
   }, []);
 
   return (
@@ -98,33 +125,35 @@ function Home() {
           );
         })}
       </div>
-      <div className="p-5">
-        <h1 className="text-2xl font-bold text-center pb-2">❤️ Selfies</h1>
+      <div className="p-5 w-full">
+        <h1 className="text-2xl font-bold text-center pb-2">
+          ❤️ Selfies <span className="text-3xl chinese">自拍</span>
+        </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div className="rounded-xl overflow-hidden border-2 border-black dark:border-white relative">
-            <div className="bg-[#FFB300] absolute top-3 right-2 py-1 px-4 text-sm rounded text-black font-semibold border border-black">
-              helo
+          {selfies.length > 0 ? (
+            selfies.map((e, idx) => {
+              return (
+                <div
+                  key={"Selfie" + idx}
+                  className="rounded-xl overflow-hidden border-2 border-black dark:border-white relative"
+                >
+                  <div className="bg-[#FFB300] absolute top-3 right-2 py-1 px-4 text-sm rounded text-black font-semibold border border-black">
+                    {e.username}
+                  </div>
+                  <img src={e.image} />
+                </div>
+              );
+            })
+          ) : (
+            <div className="py-12 text-center text-lg">
+              <h1>
+                No Selfies Found! Be the FIRST to SNAP one and Start the FUN!
+              </h1>
+              <h1 className="chinese text-xl">
+                没有找到自拍照！赶快拍一张，开启欢乐时光！
+              </h1>
             </div>
-            <img src="./Mooncake.png" />
-          </div>
-          <div className="rounded-xl overflow-hidden border-2 border-black dark:border-white relative">
-            <div className="bg-[#FFB300] absolute top-3 right-2 py-1 px-4 text-sm rounded text-black font-semibold border border-black">
-              helo
-            </div>
-            <img src="./Mooncake.png" />
-          </div>
-          <div className="rounded-xl overflow-hidden border-2 border-black dark:border-white relative">
-            <div className="bg-[#FFB300] absolute top-3 right-2 py-1 px-4 text-sm rounded text-black font-semibold border border-black">
-              helo
-            </div>
-            <img src="./Mooncake.png" />
-          </div>
-          <div className="rounded-xl overflow-hidden border-2 border-black dark:border-white relative">
-            <div className="bg-[#FFB300] absolute top-3 right-2 py-1 px-4 text-sm rounded text-black font-semibold border border-black">
-              helo
-            </div>
-            <img src="./Mooncake.png" />
-          </div>
+          )}
         </div>
       </div>
     </div>
