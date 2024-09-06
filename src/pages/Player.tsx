@@ -23,80 +23,119 @@ function Player() {
 
   return (
     <div className="max-w-4xl p-5 mx-auto h-full flex flex-col justify-start items-center gap-7">
-      <h1 className="md:text-4xl text-3xl font-extrabold py-10 ">
-        🥳 Congratulations!
-      </h1>
-      <p className="text-lg text-center">
-        You have unlocked the legendary secret mooncake recipe!
+      <div className="">
+        <img src="./Mooncake.png" className="max-h-[175px] object-cover w-full mx-auto" />
+        <h1 className="md:text-4xl text-3xl font-extrabold text-center pt-6">
+          🥳 Congratulations! <span className="chinese">恭喜您！</span>
+        </h1>
+      </div>
+      <p className="text-lg text-center flex flex-col items-center px-4">
+        <span>You have restored the lost mooncake recipe!</span>
+        <span className="chinese text-xl">您恢复了遗失的月饼食谱！</span>
       </p>
       <div className="text-3xl py-2 font-bold">{username}</div>
       <div className="flex flex-col flexContainer">
         <div className="flex flex-col text-center gap-2">
           <div className="text-sm dark:text-[#FFB300] text-[#FFA000] font-bold tracking-wide">
-            GAME START
+            <span>GAME START</span>&nbsp;
+            <span className="chinese text-lg">游戏开始</span>
           </div>
           <div className="text-xl font-semibold">Mon 19 Feb - 10:08AM</div>
         </div>
         <div className="flex flex-col text-center gap-2">
           <div className="text-sm dark:text-[#FFB300] text-[#FFA000] font-bold tracking-wide">
-            GAME END
+            <span>GAME END</span>&nbsp;
+            <span className="chinese text-lg">游戏结束</span>
           </div>
           <div className="text-xl font-semibold">Mon 19 Feb - 12:18PM</div>
         </div>
         <div className="flex flex-col text-center gap-5">
           <div className="text-sm dark:text-[#FFB300] text-[#FFA000] font-bold tracking-wide">
-            QUESTION TIMINGS
+            <span>QUESTION TIMINGS</span>&nbsp;
+            <span className="chinese text-lg">谜题时间</span>
           </div>
-          <div className="text-xl font-semibold flex flex-col">
-            <p>Clue 1</p>
-            <p>⌛Time Taken: 2:53</p>
-            <p>Incorrects: 0 | Stucks: 0 | Losts: 0 | Skips: 0</p>
-          </div>
-          <div className="text-xl font-semibold flex flex-col">
-            <p>Clue 2</p>
-            <p>⌛Time Taken: 2:53</p>
-            <p>Incorrects: 0 | Stucks: 0 | Losts: 0 | Skips: 0</p>
-          </div>
-          <div className="text-xl font-semibold flex flex-col">
-            <p>Clue 3</p>
-            <p>⌛Time Taken: 2:53</p>
-            <p>Incorrects: 0 | Stucks: 0 | Losts: 0 | Skips: 0</p>
+          <div className="text-xl font-semibold flex flex-col gap-0.5">
+            <div className="flex gap-4 items-center justify-center">
+              <span>Stage 1</span> <span className="chinese">谜题 1</span>
+            </div>
+            <p>
+              ⌛Time Taken <span className="chinese">花费时间</span>: 2:53
+            </p>
+            <div className="separator flex items-center justify-center text-lg">
+              <div className="flex flex-col">
+                <div>
+                  Incorrect <span className="chinese">错误</span>:
+                </div>
+                <span>0</span>
+              </div>
+              <div className="flex flex-col">
+                <div>
+                  Hint <span className="chinese">暗示</span>:
+                </div>
+                <span>0</span>
+              </div>
+              <div className="flex flex-col">
+                <div>
+                  Skip <span className="chinese">跳过</span>:
+                </div>
+                <span>0</span>
+              </div>
+            </div>
           </div>
         </div>
         <div className="flex flex-col text-center gap-2">
           <div className="text-sm dark:text-[#FFB300] text-[#FFA000] font-bold tracking-wide">
-            PENALTIES
+            <span>PENALTIES</span>&nbsp;
+            <span className="chinese text-lg">惩罚</span>
           </div>
-          <div className="text-xl font-semibold">Mon 19 Feb - 10:08AM</div>
+          <div className="text-xl font-semibold flex flex-col gap-2">
+            <span>❌ Incorrect (5 min): 4</span>
+            <span>🤔Hints (10 min): 0</span>
+            <span>⏭️Skips (20min): 0</span>
+          </div>
         </div>
         <div className="flex flex-col text-center gap-2">
           <div className="text-sm dark:text-[#FFB300] text-[#FFA000] font-bold tracking-wide">
-            TOTAL PENALTIES (ADDED TO TIME)
-          </div>
-          <div className="text-xl font-semibold">Mon 19 Feb - 10:08AM</div>
-        </div>
-        <div className="flex flex-col text-center gap-2">
-          <div className="text-sm dark:text-[#FFB300] text-[#FFA000] font-bold tracking-wide">
-            BREAKS (NOT INCLUDED)
-          </div>
-          <div className="text-xl font-semibold">Mon 19 Feb - 10:08AM</div>
-        </div>
-        <div className="flex flex-col text-center gap-2">
-          <div className="text-sm dark:text-[#FFB300] text-[#FFA000] font-bold tracking-wide">
-            FINAL TIMING
-          </div>
-          <div className="text-xl font-semibold">Mon 19 Feb - 10:08AM</div>
-        </div>
-        <div className="p-10">
-          <div className="text-xl font-semibold text-center">
-            See Leaderboard
+            <span>TOTAL PENALTIES (ADDED TO TIME)</span>
             <br />
-            See how you rank against other players!
+            <span className="chinese text-lg">总罚时间（加到时间）</span>
           </div>
+          <div className="text-xl font-semibold">Mon 19 Feb - 10:08AM</div>
         </div>
-        <Link to={"/"}>
-          <Button>🏆 Leaderboard</Button>
-        </Link>
+        <div className="flex flex-col text-center gap-2">
+          <div className="text-sm dark:text-[#FFB300] text-[#FFA000] font-bold tracking-wide">
+            <span>BREAKS (NOT INCLUDED)</span>
+            <br />
+            <span className="chinese text-lg">休息时间（不包括）</span>
+          </div>
+          <div className="text-xl font-semibold">Mon 19 Feb - 10:08AM</div>
+        </div>
+        <div className="flex flex-col text-center gap-2">
+          <div className="text-sm dark:text-[#FFB300] text-[#FFA000] font-bold tracking-wide">
+            <span>FINAL TIMING</span>&nbsp;
+            <span className="chinese  text-lg">总时间</span>
+          </div>
+          <div className="text-xl font-semibold">Mon 19 Feb - 10:08AM</div>
+        </div>
+        <div className="pt-5 pb-10 flex flex-col gap-5">
+          <div className="text-xl font-semibold text-center">
+            <span className="dark:text-[#FFB300] text-[#FFA000]  text-2xl font-bold">
+              See Leaderboard <span className="chinese">查看排行榜</span>
+            </span>
+            <br />
+            <div className="flex flex-col">
+              <span className="px-6">
+                See how you rank against other players!
+              </span>
+              <span className="chinese text-2xl">看看您与其他玩家的排名！</span>
+            </div>
+          </div>
+          <Link to={"/"} className="mx-auto">
+            <Button className="text-lg font-bold py-5 px-6">
+              🏆 Leaderboard&nbsp;<span className="chinese">排行榜</span>
+            </Button>
+          </Link>
+        </div>
       </div>
     </div>
   );
