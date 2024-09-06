@@ -81,14 +81,14 @@ function Home() {
             <Link to={"/" + "UltraRaptor"}>
               <Button className="w-full h-full py-2 px-0" variant={"ghost"}>
                 <div className="flex gap-3 items-center w-full">
-                  <span className="font-bold text-[#a1a1a1] dark:text-[#cacaca] w-7">
+                  <span className="font-bold text-[#7c7c7c] dark:text-[#cacaca] w-7">
                     {idx + 4}
                   </span>
                   <img
                     src="https://img.freepik.com/free-icon/user_318-563642.jpg?w=360"
                     className="aspect-square w-12 rounded-full"
                   />
-                  <span className="max-w-32 w-min break-all text-left">
+                  <span className="max-w-32 w-min text-left break-words whitespace-normal">
                     Namasdadadasdqaasde
                   </span>
                   <span className="ml-auto text-base">1hr 10min</span>
