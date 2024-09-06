@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import supabase from "@/lib/supabase";
 
 function Home() {
-  const [leaderboard, setLeaderboard] = useState([]);
+  // const [leaderboard, setLeaderboard] = useState([]);
 
   useEffect(() => {
-    supabase.from("")
+    supabase.from("");
   }, []);
 
   return (
