@@ -7,6 +7,17 @@ import { cn } from "@/lib/utils";
 function Player() {
   const { username } = useParams();
   const [userExist, setUserExist] = useState<boolean>(true);
+  const [startTime, setStartTime] = useState<Date>();
+  const [endTime, setEndTime] = useState<Date>();
+  let options: Intl.DateTimeFormatOptions = {
+    weekday: "short",
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+  };
 
   useEffect(() => {
     async function getUser() {
@@ -26,6 +37,54 @@ function Player() {
 
     getUser();
   }, []);
+
+  useEffect(() => {
+    async function getProgress() {
+      const { data, error } = await supabase
+        .from("bwm_progress")
+        .select("*,bwm_stage(*)")
+        .eq("username", username)
+        .order("time_started", { ascending: false })
+        .order("time_completed", { ascending: false });
+      if (error) {
+        console.log(error);
+        return error;
+      }
+      let startTimeFilter = data.filter((e) => {
+        return e.stage == 3;
+      });
+      if (startTimeFilter.length && startTimeFilter[0].time_started) {
+        console.log(startTimeFilter[0].time_started);
+        setStartTime(new Date(startTimeFilter[0].time_started));
+      } else {
+        setUserExist(false);
+      }
+      console.log(data);
+      let endTimeFilter = data.filter((e) => {
+        return e.stage == 11;
+      });
+      if (endTimeFilter.length && endTimeFilter[0].time_completed) {
+        console.log(endTimeFilter[0].time_completed);
+        setEndTime(new Date(endTimeFilter[0].time_completed));
+        // .toLocaleString("en-GB", options)
+        //       .replace(",", "")
+        //       .replace(",", " -")
+      } else {
+        setUserExist(false);
+      }
+      // if (data.length < 1) {
+      //   setUserExist(false);
+      // }
+    }
+
+    getProgress();
+  }, [userExist]);
+
+  useEffect(() => {
+    if (startTime && endTime && startTime > endTime) {
+      setUserExist(false);
+    }
+  }, [startTime, endTime]);
 
   return (
     <div
@@ -56,14 +115,26 @@ function Player() {
                 <span>GAME START</span>&nbsp;
                 <span className="chinese text-lg">游戏开始</span>
               </div>
-              <div className="text-xl font-semibold">Mon 19 Feb - 10:08AM</div>
+              <div className="text-xl font-semibold">
+                {startTime &&
+                  startTime
+                    .toLocaleString("en-GB", options)
+                    .replace(",", "")
+                    .replace(",", " -")}
+              </div>
             </div>
             <div className="flex flex-col text-center gap-2">
               <div className="text-sm dark:text-[#FFB300] text-[#FFA000] font-bold tracking-wide">
                 <span>GAME END</span>&nbsp;
                 <span className="chinese text-lg">游戏结束</span>
               </div>
-              <div className="text-xl font-semibold">Mon 19 Feb - 12:18PM</div>
+              <div className="text-xl font-semibold">
+                {endTime &&
+                  endTime
+                    .toLocaleString("en-GB", options)
+                    .replace(",", "")
+                    .replace(",", " -")}
+              </div>
             </div>
             <div className="flex flex-col text-center gap-5">
               <div className="text-sm dark:text-[#FFB300] text-[#FFA000] font-bold tracking-wide">
