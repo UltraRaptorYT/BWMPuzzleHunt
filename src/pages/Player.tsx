@@ -177,8 +177,8 @@ function Player() {
               </div>
               <div className="text-xl font-semibold flex flex-col gap-2">
                 <span>❌ Incorrect (5 min): 4</span>
-                <span>🤔Hints (10 min): 0</span>
-                <span>⏭️Skips (20min): 0</span>
+                <span>🤔 Hints (10 min): 0</span>
+                <span>⏭️ Skips (20min): 0</span>
               </div>
             </div>
             <div className="flex flex-col text-center gap-2">
@@ -194,6 +194,13 @@ function Player() {
                 <span>BREAKS (NOT INCLUDED)</span>
                 <br />
                 <span className="chinese text-lg">休息时间（不包括）</span>
+              </div>
+              <div className="text-xl font-semibold">Mon 19 Feb - 10:08AM</div>
+            </div>
+            <div className="flex flex-col text-center gap-2">
+              <div className="text-sm dark:text-[#FFB300] text-[#FFA000] font-bold tracking-wide">
+                <span>BONUSES</span>&nbsp;
+                <span className="chinese  text-lg">奖励</span>
               </div>
               <div className="text-xl font-semibold">Mon 19 Feb - 10:08AM</div>
             </div>
