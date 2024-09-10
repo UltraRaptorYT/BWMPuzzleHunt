@@ -101,7 +101,7 @@ function Player() {
               className="max-h-[175px] object-cover w-full mx-auto"
             />
             <h1 className="md:text-4xl text-3xl font-extrabold text-center pt-6">
-              🥳 Congratulations! <span className="chinese">恭喜您！</span>
+              🥳 Congratulations!<br/><span className="chinese">恭喜您！</span>
             </h1>
           </div>
           <p className="text-lg text-center flex flex-col items-center px-4">
