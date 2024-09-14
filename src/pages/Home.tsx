@@ -16,7 +16,13 @@ function Home() {
   const [selfies, setSelfies] = useState<ImageType[]>([]);
 
   useEffect(() => {
-    supabase.from("bwm_user");
+    // async function getLeaderboard() {
+    //   const { data, error } = supabase
+    //     .from("bwm_user")
+    //     .select()
+    //     .eq("completed", true);
+    // }
+    // getLeaderboard();
   }, []);
 
   useEffect(() => {
